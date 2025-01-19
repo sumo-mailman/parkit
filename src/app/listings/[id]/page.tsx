@@ -1,17 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { getListing } from "../../../../hooks/getListing";
+import { useParams } from "next/navigation";
 
 const Listing = () => {
-  // For demo, here’s some placeholder listing data.
-  const listing = {
-    image: "/parking-placeholder.jpg",
-    address: "123 Example Street, Melbourne",
-    pricePerDay: 25,
-    availability: "Weekdays Only",
-    owner: "John Doe",
-  };
+  const { id } = useParams();
+
+  const { listing, loading, error } = getListing(id);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="bg-gray-900 text-white min-h-screen flex flex-col">
@@ -38,10 +43,8 @@ const Listing = () => {
       {/* Main Content Area */}
       <main className="flex-grow px-6 lg:px-8 flex flex-col justify-center">
         <div className="mx-auto max-w-7xl w-full py-10">
-          <h1 className="text-3xl font-bold mb-6">Featured Listing</h1>
+          <h1 className="text-3xl font-bold mb-6">Listing</h1>
 
-          {/* Content Layout: Image on the left, details on the right, 
-              or you can stack them vertically on small screens */}
           <div className="flex flex-col md:flex-row gap-8 items-start">
             {/* Image Section */}
             <div className="w-full md:w-1/2">
@@ -66,7 +69,7 @@ const Listing = () => {
               </p>
               <p className="mb-2">
                 <span className="font-semibold">Availability:</span>{" "}
-                {listing.availability}
+                {listing.availability ? "true" : "false"}
               </p>
               <p className="mb-2">
                 <span className="font-semibold">Owner:</span> {listing.owner}
