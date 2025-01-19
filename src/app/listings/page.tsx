@@ -3,6 +3,8 @@
 import type { NextPage } from "next/types";
 import Image from "next/image";
 
+import { useListings } from "../../../hooks/getListings";
+
 const ListingPage: NextPage = () => {
   const scrollToSection = (id: string) => {
     if (typeof window !== "undefined") {
@@ -10,6 +12,19 @@ const ListingPage: NextPage = () => {
       element?.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const { listings, error, loading } = useListings();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  console.log(listings);
+
   return (
     <div className="bg-gray-900 text-white">
       {/* Header */}
@@ -66,24 +81,25 @@ const ListingPage: NextPage = () => {
           </h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {/* Sample Listings */}
-            {[...Array(12)].map((_, index) => (
+            {listings.map((listing, index) => (
               <div
                 key={index}
                 className="rounded-lg bg-gray-800 p-6 shadow hover:shadow-lg"
               >
                 <Image
-                  src="https://via.placeholder.com/300"
+                  src={listing.image}
+                  width={500}
+                  height={500}
                   alt="Listing Image"
-                  width={300}
-                  height={200}
-                  className="rounded-lg"
-                ></Image>
-                <h3 className="text-lg font-semibold">Listing {index + 1}</h3>
-                <p className="mt-2 text-sm text-gray-400">
-                  A brief description of the listing goes here.
-                </p>
+                  className="rounded-2xl"
+                />
+                <h3 className="text-lg font-semibold pt-3">
+                  Listing {index + 1} - ${listing.pricePerDay} per day
+                </h3>
+
+                <p className="mt-2 text-sm text-gray-400">{listing.address}</p>
                 <a
-                  href="#"
+                  href={`listings/${listing.id}`}
                   className="mt-4 inline-block text-sm font-semibold text-indigo-400 hover:text-indigo-300"
                 >
                   View Details →
