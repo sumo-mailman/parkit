@@ -1,21 +1,25 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { getListing } from "../../../../hooks/getListing";
+import { useListing } from "../../../../hooks/useListing";
 import { useParams } from "next/navigation";
 
 const Listing = () => {
   const { id } = useParams();
 
-  const { listing, loading, error } = getListing(id);
+  if (!id || Array.isArray(id)) {
+    return <div>No valid ID provided...</div>;
+  }
+
+  const { listing, loading, error } = useListing(id);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (error || !listing) {
+    return <div>Error: {error || !listing}</div>;
   }
 
   return (
@@ -24,7 +28,7 @@ const Listing = () => {
       <header className="inset-x-0 top-0 z-50 p-6 lg:px-8">
         <nav aria-label="Global" className="flex items-center justify-between">
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="/listings" className="-m-1.5 p-1.5">
               <span className="text-lg font-bold">Parkit</span>
             </a>
           </div>
@@ -69,10 +73,10 @@ const Listing = () => {
               </p>
               <p className="mb-2">
                 <span className="font-semibold">Availability:</span>{" "}
-                {listing.availability ? "true" : "false"}
+                {listing.available ? "true" : "false"}
               </p>
               <p className="mb-2">
-                <span className="font-semibold">Owner:</span> {listing.owner}
+                <span className="font-semibold">Owner:</span> {listing.ownerId}
               </p>
             </div>
           </div>

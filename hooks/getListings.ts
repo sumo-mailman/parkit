@@ -3,8 +3,8 @@ import { Listing } from "../types/listing";
 
 export function useListings() {
   const [listings, setListings] = useState<Listing[]>([]);
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchListings = useCallback(async () => {
     try {
