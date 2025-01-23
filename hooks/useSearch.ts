@@ -1,23 +1,30 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 export function useSearch() {
-  const [data, setData] = useState();
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<any | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const search = useCallback(async (searchQuery: string) => {
+    setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`/api/search?query=${searchQuery}`);
+      const response = await fetch(
+        `/api/search?query=${encodeURIComponent(searchQuery)}`
+      );
 
-      if (!response) {
-        throw new Error("failed to search and fetch listing");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.error || "Failed to search and fetch listing"
+        );
       }
 
-      const data = await response.json();
-      setData(data);
-    } catch (error) {
-      setError("An error has occurred when searching");
+      const result = await response.json();
+      setData(result);
+    } catch (error: any) {
+      console.error("Search Error:", error);
+      setError(error.message || "An error occurred during the search");
     } finally {
       setLoading(false);
     }

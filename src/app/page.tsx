@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { NextPage } from "next/types";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useSearch } from "../../hooks/useSearch";
+// import Dropdown from "../../components/dropdown/Dropdown";
 
 const navigation = [
   { name: "Listings", href: "/listings" },
@@ -23,10 +24,9 @@ const Home: NextPage = () => {
     if (searchQuery.trim()) {
       console.log("Searching for:", searchQuery);
       console.log(search(searchQuery));
+      console.log(data);
     }
   };
-
-  console.log(data);
 
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900 to-gray-800">
@@ -155,6 +155,7 @@ const Home: NextPage = () => {
               placeholder="Enter an address..."
               className="w-full max-w-md rounded-md border border-gray-700 bg-gray-800 px-4 py-2 text-white focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg"
             />
+
             <button
               onClick={handleSearch}
               className="ml-4 rounded-md bg-indigo-500 px-4 py-2 text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
