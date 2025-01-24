@@ -1,12 +1,3 @@
-import { Listing } from "@prisma/client"
-
-const Dropdown = (data: Listing[]) => {
-
-return (
-
-)
-}
-
 // import React from "react";
 
 // const Dropdown = ({

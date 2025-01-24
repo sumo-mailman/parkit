@@ -1,4 +1,16 @@
-# Next.js starter template
+# ParkIt
+
+An application that allows you to book a parking spot at any of our marketplace locations.
+
+## Setup
+
+```
+npx prisma studio
+```
+
+```
+npm run dev
+```
 
 ## Features
 
@@ -45,7 +57,3 @@ npm run test:type
 ```
 npx playwright test
 ```
-
-## Licensing
-
-This project is licensed under the MIT License. Please read the [license](LICENSE) file for more information.
