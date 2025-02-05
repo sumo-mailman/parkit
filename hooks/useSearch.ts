@@ -22,6 +22,7 @@ export function useSearch() {
 
       const result = await response.json();
       setData(result);
+      return result;
     } catch (error: any) {
       console.error("Search Error:", error);
       setError(error.message || "An error occurred during the search");

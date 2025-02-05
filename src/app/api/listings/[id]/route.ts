@@ -12,7 +12,6 @@ export async function GET(req: Request, context: any) {
   }
 
   // query the database
-
   try {
     const listing = await prisma.listing.findUnique({
       where: {

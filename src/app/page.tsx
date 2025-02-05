@@ -5,7 +5,7 @@ import type { NextPage } from "next/types";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useSearch } from "../../hooks/useSearch";
-// import Dropdown from "../../components/dropdown/Dropdown";
+import { Listing } from "@prisma/client";
 
 const navigation = [
   { name: "Listings", href: "/listings" },
@@ -16,15 +16,22 @@ const navigation = [
 
 const Home: NextPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [data, setData] = useState<Listing[]>([]);
 
-  const { data, loading, error, search } = useSearch();
+  const { search } = useSearch();
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (searchQuery.trim()) {
       console.log("Searching for:", searchQuery);
-      console.log(search(searchQuery));
-      console.log(data);
+
+      try {
+        const result = await search(searchQuery);
+        setData(result);
+        console.log(data);
+      } catch (error) {
+        console.log("Search failed:", error);
+      }
     }
   };
 
@@ -147,21 +154,39 @@ const Home: NextPage = () => {
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
             Search for an Address
           </h1>
-          <div className="mt-8 flex items-center justify-center">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Enter an address..."
-              className="w-full max-w-md rounded-md border border-gray-700 bg-gray-800 px-4 py-2 text-white focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg"
-            />
+          <div className="mt-8 relative">
+            {/* Input & Button */}
+            <div className="flex items-center justify-center">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Enter an address..."
+                className="w-full rounded-md border border-gray-700 bg-gray-800 px-4 py-2 text-white focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg"
+              />
+              <button
+                onClick={handleSearch}
+                className="ml-4 rounded-md bg-indigo-500 px-4 py-2 text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              >
+                Search
+              </button>
+            </div>
 
-            <button
-              onClick={handleSearch}
-              className="ml-4 rounded-md bg-indigo-500 px-4 py-2 text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            >
-              Search
-            </button>
+            {/* Dropdown Results */}
+            {data?.length > 0 && (
+              <div className="absolute left-0 right-0 mt-2 max-h-60 overflow-y-auto rounded-md border border-gray-700 bg-gray-900 shadow-lg">
+                <ul className="py-2">
+                  {data.map((point) => (
+                    <ul
+                      key={point.id}
+                      className="px-4 py-2 text-white hover:bg-gray-700 cursor-pointer"
+                    >
+                      {point.address}
+                    </ul>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>

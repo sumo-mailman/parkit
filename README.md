@@ -37,7 +37,7 @@ npm run test:unit
 ### Run prisma studio
 
 ```
-npx run prisma
+npx prisma studio
 ```
 
 ### Run coverage tests
