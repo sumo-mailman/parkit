@@ -6,6 +6,7 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useSearch } from "../../hooks/useSearch";
 import { Listing } from "@prisma/client";
+import Link from "next/link";
 
 const navigation = [
   { name: "Listings", href: "/listings" },
@@ -28,12 +29,15 @@ const Home: NextPage = () => {
       try {
         const result = await search(searchQuery);
         setData(result);
-        console.log(data);
       } catch (error) {
         console.log("Search failed:", error);
       }
     }
   };
+
+  useEffect(() => {
+    console.log("Updated data:", data);
+  }, [data]);
 
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900 to-gray-800">
@@ -71,7 +75,7 @@ const Home: NextPage = () => {
         >
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5">
-              <span className="text-lg font-bold text-white">MyCompany</span>
+              <span className="text-lg font-bold text-white">Parkit</span>
             </a>
           </div>
           <div className="flex lg:hidden">
@@ -177,12 +181,12 @@ const Home: NextPage = () => {
               <div className="absolute left-0 right-0 mt-2 max-h-60 overflow-y-auto rounded-md border border-gray-700 bg-gray-900 shadow-lg">
                 <ul className="py-2">
                   {data.map((point) => (
-                    <ul
+                    <li
                       key={point.id}
-                      className="px-4 py-2 text-white hover:bg-gray-700 cursor-pointer"
+                      className="px-4 py-2 text-left text-white hover:bg-gray-700 cursor-pointer"
                     >
-                      {point.address}
-                    </ul>
+                      <a href={`listings/${point.id}`}>{point.address}</a>
+                    </li>
                   ))}
                 </ul>
               </div>
