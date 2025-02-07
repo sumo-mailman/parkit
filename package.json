@@ -12,6 +12,7 @@
     "test:type": "tsc --noEmit",
     "test:unit": "jest --passWithNoTests",
     "test:coverage": "jest --collectCoverage --",
+    "postinstall": "prisma generate",
     "test:unit:watch": "jest --watch",
     "prepare": "husky"
   },
