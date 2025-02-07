@@ -27,7 +27,7 @@ export async function GET(req: Request, context: any) {
   } catch (error) {
     return NextResponse.json(
       { error: "An error occured while fetching the listing" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

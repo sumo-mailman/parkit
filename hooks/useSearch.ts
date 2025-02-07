@@ -10,13 +10,13 @@ export function useSearch() {
     setError(null);
     try {
       const response = await fetch(
-        `/api/search?query=${encodeURIComponent(searchQuery)}`
+        `/api/search?query=${encodeURIComponent(searchQuery)}`,
       );
 
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(
-          errorData.error || "Failed to search and fetch listing"
+          errorData.error || "Failed to search and fetch listing",
         );
       }
 

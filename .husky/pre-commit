@@ -4,6 +4,6 @@ if git log -1 --pretty=%B | grep -q '\[skip ci\]'; then
   exit 0
 fi
 
+npm run prettier:check
 npm run test:type
 npm run test:unit
-npm run prettier:check

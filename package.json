@@ -10,7 +10,7 @@
     "prettier:fix": "prettier --write \"./**/*.{ts,tsx}\"",
     "prettier:check": "prettier --check \"./**/*.{ts,tsx}\"",
     "test:type": "tsc --noEmit",
-    "test:unit": "jest",
+    "test:unit": "jest --passWithNoTests",
     "test:coverage": "jest --collectCoverage --",
     "test:unit:watch": "jest --watch",
     "prepare": "husky"

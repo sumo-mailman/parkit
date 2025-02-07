@@ -13,7 +13,7 @@ export async function GET(req: Request) {
         {
           message: "Query parameter is required",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const result = await prisma.listing.findMany({
@@ -31,7 +31,7 @@ export async function GET(req: Request) {
   } catch (error) {
     return NextResponse.json(
       { message: "Error loading search results" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
