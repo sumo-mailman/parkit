@@ -23,9 +23,6 @@ const ListingPage: NextPage = () => {
     return <div>Error: {error}</div>;
   }
 
-  const { user } = useUser();
-  console.log("😁 user", user);
-
   return (
     <div className="bg-gray-900 text-white">
       {/* Header */}
