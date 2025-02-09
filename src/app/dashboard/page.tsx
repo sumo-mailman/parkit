@@ -4,7 +4,7 @@ import React from "react";
 import { useListings } from "../../../hooks/getListings";
 import { useRouter } from "next/navigation";
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const { listings, error, loading } = useListings();
   const router = useRouter();
 
@@ -32,23 +32,28 @@ export const Dashboard = () => {
             {listings.map((listing) => (
               <div
                 key={listing.id}
-                className="p-4 bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition"
+                className="p-4 bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition flex flex-col h-full"
               >
+                {/* Image */}
                 <img
                   src={listing.image || "/placeholder.jpg"}
                   alt={listing.address}
                   className="w-full h-32 object-cover rounded-md mb-3"
                 />
-                <h2 className="text-lg font-semibold text-white">
-                  {listing.address}
-                </h2>
-                <p className="text-sm text-gray-400">
-                  Price: ${listing.pricePerDay}/day
-                </p>
 
-                {/* Edit Button */}
+                {/* Address & Price */}
+                <div className="flex-grow">
+                  <h2 className="text-lg font-semibold text-white break-words">
+                    {listing.address}
+                  </h2>
+                  <p className="text-sm text-gray-400">
+                    Price: ${listing.pricePerDay}/day
+                  </p>
+                </div>
+
+                {/* Edit Button at Bottom */}
                 <button
-                  className="mt-3 w-full bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 rounded-md transition"
+                  className="mt-auto w-full bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 rounded-md transition"
                   onClick={() => router.push(`/dashboard/edit/${listing.id}`)}
                 >
                   Edit

@@ -7,7 +7,7 @@ export interface Listing {
   createdAt: Date;
   updatedAt: Date;
   owner: {
-    id: number;
+    id: string;
     name: string | null;
     email: string;
   };
