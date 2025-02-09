@@ -4,6 +4,7 @@ import type { NextPage } from "next/types";
 import Image from "next/image";
 
 import { useListings } from "../../../hooks/getListings";
+import { useUser } from "@clerk/nextjs";
 
 const ListingPage: NextPage = () => {
   const scrollToSection = (id: string) => {
@@ -21,6 +22,9 @@ const ListingPage: NextPage = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
+
+  const { user } = useUser();
+  console.log("😁 user", user);
 
   return (
     <div className="bg-gray-900 text-white">

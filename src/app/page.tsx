@@ -6,13 +6,10 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useSearch } from "../../hooks/useSearch";
 import { Listing } from "@prisma/client";
-import Link from "next/link";
 
 const navigation = [
-  { name: "Listings", href: "/listings" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
+  { name: "Find a parking", href: "/listings" },
+  { name: "List your parking", href: "/dashboard" },
 ];
 
 const Home: NextPage = () => {
@@ -156,7 +153,7 @@ const Home: NextPage = () => {
       <div className="relative flex h-screen items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-            Search for an Address
+            Search for a Parking Spot
           </h1>
           <div className="mt-8 relative">
             {/* Input & Button */}
@@ -165,7 +162,7 @@ const Home: NextPage = () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Enter an address..."
+                placeholder="Enter an address... e.g: street, parade"
                 className="w-full rounded-md border border-gray-700 bg-gray-800 px-4 py-2 text-white focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg"
               />
               <button
