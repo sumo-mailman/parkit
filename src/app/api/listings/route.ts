@@ -23,4 +23,33 @@ export async function GET() {
   return NextResponse.json(listings, { status: 200 });
 }
 
-// Optionally, handle other HTTP methods like POST, PUT, DELETE here
+export async function POST(req: Request) {
+  try {
+    const { address, pricePerDay, image, available, ownerId } =
+      await req.json();
+
+    if (!ownerId || !address || !pricePerDay || !image || !available) {
+      return NextResponse.json(
+        { error: "All fields are required" },
+        { status: 400 },
+      );
+    }
+
+    const newListing = await prisma.listing.create({
+      data: {
+        address,
+        pricePerDay,
+        image,
+        available,
+        ownerId,
+      },
+    });
+
+    return NextResponse.json(newListing, { status: 201 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: `An error has occured - ${error}` },
+      { status: 500 },
+    );
+  }
+}
