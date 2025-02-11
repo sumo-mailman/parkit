@@ -5,7 +5,7 @@ import { useListings } from "../../../hooks/getListings";
 import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
-  const { listings, error, loading } = useListings();
+  const { listings, loading } = useListings();
   const router = useRouter();
 
   return (
