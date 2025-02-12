@@ -3,6 +3,7 @@
 import React from "react";
 import { useListings } from "../../../hooks/getListings";
 import { useRouter } from "next/navigation";
+import { Navbar } from "../../../components/dropdown/navbar/Navbar";
 
 const Dashboard = () => {
   const { listings, loading } = useListings();
@@ -12,6 +13,7 @@ const Dashboard = () => {
     <div className="relative min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
       <div className="max-w-6xl mx-auto p-6">
         {/* Header */}
+        <Navbar />
         <h1 className="text-3xl font-bold text-white mb-6">Your Listings</h1>
 
         {/* Create Listing Button */}

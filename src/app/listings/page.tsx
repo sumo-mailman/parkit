@@ -4,7 +4,7 @@ import type { NextPage } from "next/types";
 import Image from "next/image";
 
 import { useListings } from "../../../hooks/getListings";
-import { useUser } from "@clerk/nextjs";
+import { Navbar } from "../../../components/dropdown/navbar/Navbar";
 
 const ListingPage: NextPage = () => {
   const scrollToSection = (id: string) => {
@@ -25,31 +25,8 @@ const ListingPage: NextPage = () => {
 
   return (
     <div className="bg-gray-900 text-white">
-      {/* Header */}
-      <header className="absolute inset-x-0 top-0 z-50">
-        <nav
-          aria-label="Global"
-          className="flex items-center justify-between p-6 lg:px-8"
-        >
-          <div className="flex lg:flex-1">
-            <a href="/" className="-m-1.5 p-1.5">
-              <span className="text-lg font-bold">Parkit</span>
-            </a>
-          </div>
-
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-white hover:text-gray-300"
-            >
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </nav>
-      </header>
-
-      {/* Hero Section */}
       <main className="relative min-h-screen flex flex-col items-center justify-center text-center">
+        <Navbar />
         <div className="px-6 lg:px-8">
           <h1 className="text-2xl font-bold sm:text-3xl">
             Discover Parking Spots

@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { useListing } from "../../../../hooks/useListing";
 import { useParams } from "next/navigation";
+import { Navbar } from "../../../../components/dropdown/navbar/Navbar";
 
 const Listing = () => {
   const { id } = useParams();
@@ -25,32 +26,14 @@ const Listing = () => {
   return (
     <div className="bg-gray-900 text-white min-h-screen flex flex-col">
       {/* Header */}
-      <header className="inset-x-0 top-0 z-50 p-6 lg:px-8">
-        <nav aria-label="Global" className="flex items-center justify-between">
-          <div className="flex lg:flex-1">
-            <a href="/listings" className="-m-1.5 p-1.5">
-              <span className="text-lg font-bold">Parkit</span>
-            </a>
-          </div>
-
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-white hover:text-gray-300"
-            >
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </nav>
-      </header>
-
-      {/* Main Content Area */}
+      <Navbar />
       <main className="flex-grow px-6 lg:px-8 flex flex-col justify-center">
         <div className="mx-auto max-w-7xl w-full py-10">
           <h1 className="text-3xl font-bold mb-6">Listing</h1>
 
           <div className="flex flex-col md:flex-row gap-8 items-start">
             {/* Image Section */}
+
             <div className="w-full md:w-1/2">
               <Image
                 src={listing.image}
@@ -60,7 +43,6 @@ const Listing = () => {
                 className="rounded-lg object-cover"
               />
             </div>
-
             {/* Listing Details Section */}
             <div className="w-full md:w-1/2">
               <p className="mb-2">

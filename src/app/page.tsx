@@ -9,7 +9,6 @@ import { Navbar } from "../../components/dropdown/navbar/Navbar";
 import { useUser } from "@clerk/clerk-react";
 
 const Home: NextPage = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [data, setData] = useState<Listing[]>([]);
 
@@ -61,10 +60,7 @@ const Home: NextPage = () => {
         />
       </div>
 
-      <Navbar
-        setMobileMenuOpen={setMobileMenuOpen}
-        mobileMenuOpen={mobileMenuOpen}
-      />
+      <Navbar />
 
       <div className="relative flex h-screen items-center justify-center">
         <div className="text-center">
