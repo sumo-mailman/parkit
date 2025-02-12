@@ -5,7 +5,7 @@ import type { NextPage } from "next/types";
 
 import { useSearch } from "../../hooks/useSearch";
 import { Listing } from "@prisma/client";
-import { Navbar } from "../../components/dropdown/navbar/Navbar";
+
 import { useUser } from "@clerk/clerk-react";
 
 const Home: NextPage = () => {
@@ -59,8 +59,6 @@ const Home: NextPage = () => {
           className="relative h-[30rem] w-[60rem] bg-gradient-to-tr from-gray-700 via-gray-800 to-gray-900 opacity-20"
         />
       </div>
-
-      <Navbar />
 
       <div className="relative flex h-screen items-center justify-center">
         <div className="text-center">

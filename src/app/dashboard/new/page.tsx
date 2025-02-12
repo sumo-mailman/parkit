@@ -3,6 +3,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { NewListingForm } from "../../../../types/newListingForm";
+import { createListing } from "../../../../hooks/createListing";
 
 const NewListingPage = () => {
   const { register, handleSubmit } = useForm<NewListingForm>({
@@ -14,7 +15,10 @@ const NewListingPage = () => {
     },
   });
 
-  const onSubmit = (data: NewListingForm) => console.log(data);
+  const { createListing } = createListing();
+  const onSubmit = (data: NewListingForm) => {
+    data;
+  };
 
   return (
     <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">

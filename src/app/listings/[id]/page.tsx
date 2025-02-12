@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import { useListing } from "../../../../hooks/useListing";
 import { useParams } from "next/navigation";
-import { Navbar } from "../../../../components/dropdown/navbar/Navbar";
 
 const Listing = () => {
   const { id } = useParams();
@@ -25,15 +24,12 @@ const Listing = () => {
 
   return (
     <div className="bg-gray-900 text-white min-h-screen flex flex-col">
-      {/* Header */}
-      <Navbar />
       <main className="flex-grow px-6 lg:px-8 flex flex-col justify-center">
         <div className="mx-auto max-w-7xl w-full py-10">
           <h1 className="text-3xl font-bold mb-6">Listing</h1>
 
           <div className="flex flex-col md:flex-row gap-8 items-start">
             {/* Image Section */}
-
             <div className="w-full md:w-1/2">
               <Image
                 src={listing.image}

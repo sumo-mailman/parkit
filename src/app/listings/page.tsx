@@ -4,7 +4,6 @@ import type { NextPage } from "next/types";
 import Image from "next/image";
 
 import { useListings } from "../../../hooks/getListings";
-import { Navbar } from "../../../components/dropdown/navbar/Navbar";
 
 const ListingPage: NextPage = () => {
   const scrollToSection = (id: string) => {
@@ -26,7 +25,6 @@ const ListingPage: NextPage = () => {
   return (
     <div className="bg-gray-900 text-white">
       <main className="relative min-h-screen flex flex-col items-center justify-center text-center">
-        <Navbar />
         <div className="px-6 lg:px-8">
           <h1 className="text-2xl font-bold sm:text-3xl">
             Discover Parking Spots
