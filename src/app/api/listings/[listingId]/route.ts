@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import prisma from "../../../../../lib/prisma";
 
 //{ params: { id: string } }
-export async function GET(context: any) {
+export async function GET(req: Request, context: any) {
   const { listingId } = await context.params;
 
   // check to see if ID is provided
