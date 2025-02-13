@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/sumo-mailman/parkit/compare/v1.0.0...v1.1.0) (2025-02-13)
+
+
+### Features
+
+* updating navigation ([3b36c0b](https://github.com/sumo-mailman/parkit/commit/3b36c0b47751d8b869ba83678afb28ad05f7f65a))
+
 # 1.0.0 (2025-02-13)
 
 
