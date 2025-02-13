@@ -46,16 +46,22 @@ export default function RootLayout({
             </div>
             <div className="flex space-x-10">
               <a
-                className="text-base font-bold text hover:text-blue-500"
-                href="/listings"
+                className="text-base font-bold text-black hover:text-blue-500"
+                href="/"
               >
-                Find a parking
+                Search
               </a>
               <a
-                className="text-base font-bold text hover:text-blue-500"
+                className="text-base font-bold text-black hover:text-blue-500"
+                href="/listings"
+              >
+                View All
+              </a>
+              <a
+                className="text-base font-bold text-black hover:text-blue-500"
                 href="/dashboard"
               >
-                List your parking
+                Your Listing
               </a>
             </div>
 
