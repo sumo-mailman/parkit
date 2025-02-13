@@ -47,7 +47,7 @@ export default function RootLayout({
             <div className="flex space-x-10">
               <a
                 className="text-base font-bold text-black hover:text-blue-500"
-                href="/"
+                href="/search"
               >
                 Search
               </a>
