@@ -3,21 +3,38 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { NewListingForm } from "../../../../types/newListingForm";
-import { createListing } from "../../../../hooks/createListing";
+import { useCreateListing } from "../../../../hooks/createListing";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 const NewListingPage = () => {
+  const { user } = useUser();
+  const router = useRouter();
+
   const { register, handleSubmit } = useForm<NewListingForm>({
     defaultValues: {
       address: "",
       pricePerDay: 0,
-      imageUrl: "",
-      availability: false,
+      image: "",
+      available: false,
     },
   });
 
-  const { createListing } = createListing();
-  const onSubmit = (data: NewListingForm) => {
-    data;
+  const { createListing } = useCreateListing();
+
+  const onSubmit = async (data: NewListingForm) => {
+    try {
+      const response = await createListing({
+        ...data,
+        ownerId: user?.id,
+      });
+
+      console.log("Listing created successfully", response);
+
+      router.push("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -36,21 +53,21 @@ const NewListingPage = () => {
           type="number"
           placeholder="Price per day"
           className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          {...register("pricePerDay")}
+          {...register("pricePerDay", { valueAsNumber: true })}
         />
         <input
           type="text"
           placeholder="Image url"
           className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          {...register("imageUrl")}
+          {...register("image")}
         />
         <div className="flex justify-start space-x-2">
           <input
             type="checkbox"
             className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            {...register("availability")}
+            {...register("available")}
           />
-          <label>Availability</label>
+          <label>Available</label>
         </div>
         <input
           type="submit"

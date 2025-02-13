@@ -13,8 +13,8 @@ const Home: NextPage = () => {
   const [data, setData] = useState<Listing[]>([]);
 
   const { search } = useSearch();
-
   const { user } = useUser();
+
   console.log(user);
   const handleSearch = async () => {
     if (searchQuery.trim()) {

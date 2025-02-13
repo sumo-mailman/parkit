@@ -50,7 +50,7 @@ const Listing = () => {
                 {listing.pricePerDay}
               </p>
               <p className="mb-2">
-                <span className="font-semibold">Availability:</span>{" "}
+                <span className="font-semibold">Available?:</span>{" "}
                 {listing.available ? "true" : "false"}
               </p>
               <p className="mb-2">

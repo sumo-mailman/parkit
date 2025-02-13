@@ -10,7 +10,6 @@ import {
 import { Geist, Geist_Mono } from "next/font/google";
 
 import "./globals.css";
-import { Navbar } from "../../components/dropdown/navbar/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,13 +46,13 @@ export default function RootLayout({
             </div>
             <div className="flex space-x-10">
               <a
-                className="text-sm font-semibold text hover:text-blue-500"
+                className="text-base font-bold text hover:text-blue-500"
                 href="/listings"
               >
                 Find a parking
               </a>
               <a
-                className="text-sm font-semibold text hover:text-blue-500"
+                className="text-base font-bold text hover:text-blue-500"
                 href="/dashboard"
               >
                 List your parking
