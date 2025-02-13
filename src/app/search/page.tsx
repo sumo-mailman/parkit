@@ -7,13 +7,10 @@ import { useSearch } from "../../../hooks/useSearch";
 import { Listing } from "@prisma/client";
 
 import { useUser } from "@clerk/clerk-react";
-import { useRouter } from "next/router";
 
 const Search: NextPage = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [data, setData] = useState<Listing[]>([]);
-
-  const router = useRouter();
 
   const { search } = useSearch();
   // const { user } = useUser();
