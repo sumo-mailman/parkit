@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/sumo-mailman/parkit/compare/v1.2.0...v1.2.1) (2025-02-13)
+
+
+### Bug Fixes
+
+* removal of error and unused ([026bdad](https://github.com/sumo-mailman/parkit/commit/026bdad3fd05e96dc0396dcd66772dbecb2f98cd))
+
 # [1.2.0](https://github.com/sumo-mailman/parkit/compare/v1.1.0...v1.2.0) (2025-02-13)
 
 
