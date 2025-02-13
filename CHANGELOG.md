@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/sumo-mailman/parkit/compare/v1.1.0...v1.2.0) (2025-02-13)
+
+
+### Bug Fixes
+
+* updating package and changelog ([e424dca](https://github.com/sumo-mailman/parkit/commit/e424dca98c1189e7903f2c12cb84bcfae6c63d82))
+
+
+### Features
+
+* separating the search page, updating the searchbar so li is clickable, not just the text ([f32eb59](https://github.com/sumo-mailman/parkit/commit/f32eb59a8b3691faf8ff771e70b14a03bb1dcbad))
+
 # [1.1.0](https://github.com/sumo-mailman/parkit/compare/v1.0.0...v1.1.0) (2025-02-13)
 
 
